@@ -81,6 +81,14 @@ return {
     -- LSP
     {
         "neovim/nvim-lspconfig",
+        -- disable <C-k> shortcut in favor of navigating forward through snippets
+        init = function()
+            local keys = require("lazyvim.plugins.lsp.keymaps").get()
+
+            -- need to explicitly specify mode if shortcut is not binded to "normal mode"
+            -- https://github.com/LazyVim/LazyVim/discussions/266
+            keys[#keys + 1] = { "<C-k>", false, mode = "i" }
+        end,
         opts = {
             -- disable inlay hints
             inlay_hints = {

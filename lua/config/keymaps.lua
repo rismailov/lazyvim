@@ -13,6 +13,17 @@ vim.keymap.set({ "n" }, "<C-u>", "<C-u>zz", { desc = "Scroll [u]p" })
 vim.keymap.set("x", "J", ":m '>+1<cr>gv=gv")
 vim.keymap.set("x", "K", ":m '<-2<cr>gv=gv")
 
+-- Close all buffers (and reopen Neotree buffer)
+vim.keymap.set("n", "<leader>ba", "<cmd>%bd<cr><cmd>Neotree reveal<cr>", { desc = "Delete [B]uffers [A]ll" })
+
+-- Remove default keymaps for moving lines
+vim.keymap.del("n", "<A-j>")
+vim.keymap.del("n", "<A-k>")
+vim.keymap.del("i", "<A-j>")
+vim.keymap.del("i", "<A-k>")
+vim.keymap.del("v", "<A-j>")
+vim.keymap.del("v", "<A-k>")
+
 -----------------------
 -- Terminal - start
 -----------------------
@@ -33,10 +44,10 @@ vim.keymap.set("n", "<leader>t", lazyterm, { desc = "Open [t]erminal" })
 -- Terminal - end
 -----------------------
 
--- Snippets
-local ls = require("luasnip")
-vim.keymap.set({ "i", "s" }, "<c-k>", function()
-    if ls.expand_or_jumpable() then
-        ls.expand_or_jump()
-    end
-end, { silent = true })
+-- Quickfix: Navigate through occurrences
+vim.keymap.set("n", "<leader>h", "<cmd>cnext<CR>zz", { desc = "Quickfix List: Next occurrence" })
+vim.keymap.set("n", "<leader>;", "<cmd>cprev<CR>zz", { desc = "Quickfix List: Previous occurrence" })
+
+-- Quickfix: Navigate through files
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Quickfix List: Next file" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Quickfix List: Previous file" })
