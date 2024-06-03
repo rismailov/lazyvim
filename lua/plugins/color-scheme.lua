@@ -1,6 +1,13 @@
 return {
     -- themes
-    { "catppuccin/nvim" },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+            flavour = "macchiato",
+        },
+    },
     {
         "rebelot/kanagawa.nvim",
         opts = {

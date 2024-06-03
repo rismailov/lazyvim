@@ -27,6 +27,7 @@ return {
             --
             "css",
             "comment",
+            "prisma",
         },
         indent = {
             enable = true,
